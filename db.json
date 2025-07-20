@@ -1,0 +1,595 @@
+{
+  "volunteers": [
+    {
+      "id": 2,
+      "firstName": "Fatma",
+      "lastName": "Trabelsi",
+      "email": "fatma.trabelsi@email.com",
+      "phone": "+216 22 654 321",
+      "address": "Sfax, Tunisie",
+      "role": "Bureau",
+      "skills": [
+        "Gestion",
+        "Communication",
+        "Logistique"
+      ],
+      "status": "Actif",
+      "availability": "En mission",
+      "joinDate": "2023-03-20",
+      "notes": "Spécialiste en gestion des événements"
+    },
+    {
+      "id": 3,
+      "firstName": "Mohamed",
+      "lastName": "Khiari",
+      "email": "mohamed.khiari@email.com",
+      "phone": "+216 25 789 012",
+      "address": "Sousse, Tunisie",
+      "role": "Membre",
+      "skills": [
+        "Secourisme",
+        "Transport"
+      ],
+      "status": "Actif",
+      "availability": "Disponible",
+      "joinDate": "2023-06-10",
+      "notes": "Disponible les week-ends"
+    },
+    {
+      "id": 4,
+      "firstName": "Amina",
+      "lastName": "Bouaziz",
+      "email": "amina.bouaziz@email.com",
+      "phone": "+216 28 345 678",
+      "address": "Monastir, Tunisie",
+      "role": "Membre",
+      "skills": [
+        "Santé",
+        "Accompagnement psychologique"
+      ],
+      "status": "Inactif",
+      "availability": "Indisponible",
+      "joinDate": "2022-11-05",
+      "notes": "En congé maternité"
+    },
+    {
+      "id": 5,
+      "firstName": "Karim",
+      "lastName": "Jaziri",
+      "email": "karim.jaziri@email.com",
+      "phone": "+216 24 567 890",
+      "address": "Gabès, Tunisie",
+      "role": "Bureau",
+      "skills": [
+        "Informatique",
+        "Gestion de base de données"
+      ],
+      "status": "Suspendu",
+      "availability": "Indisponible",
+      "joinDate": "2023-02-28",
+      "notes": "Suspension temporaire pour raisons personnelles"
+    },
+    {
+      "firstName": "Ali",
+      "lastName": "Lahbib",
+      "email": "ali.lahbib@fsb.ucar.tn",
+      "phone": "93796757",
+      "address": "El Alia Bizerte Tunisie",
+      "role": "Membre",
+      "skills": [],
+      "status": "Actif",
+      "availability": "Disponible",
+      "joinDate": "2025-07-01",
+      "notes": "",
+      "id": 6
+    }
+  ],
+  "families": [
+    {
+      "id": 1,
+      "name": "Famille Ben Ahmed",
+      "fatherName": "Mohamed Ben Ahmed",
+      "fatherCIN": "12345678",
+      "fatherPhone": "+216 20 111 222",
+      "motherName": "Salma Ben Ahmed",
+      "motherCIN": "87654321",
+      "motherPhone": "+216 22 333 444",
+      "maritalStatus": "Marié(e)",
+      "healthCard": "Carte de traitement gratuit",
+      "chronicDisease": false,
+      "zone": "El Alia",
+      "latitude": 37.2431,
+      "longitude": 9.8734,
+      "contact": "Salma Ben Ahmed (+216 22 333 444)",
+      "address": "El Alia (37.2431, 9.8734)",
+      "members": 5,
+      "children": 3,
+      "childrenDetails": [
+        {
+          "id": "1",
+          "nom": "Ben Ahmed",
+          "prenom": "Youssef",
+          "gender": "Masculin",
+          "niveauScolaire": "Primaire",
+          "notes": "Excellent élève"
+        },
+        {
+          "id": "2",
+          "nom": "Ben Ahmed",
+          "prenom": "Amina",
+          "gender": "Féminin",
+          "niveauScolaire": "Collège",
+          "notes": "Aime les mathématiques"
+        },
+        {
+          "id": "3",
+          "nom": "Ben Ahmed",
+          "prenom": "Omar",
+          "gender": "Masculin",
+          "niveauScolaire": "Maternelle",
+          "notes": ""
+        }
+      ],
+      "status": "Active",
+      "priority": "Urgent",
+      "registrationDate": "2023-01-15",
+      "lastHelp": "2023-12-01",
+      "needs": [
+        "Aide alimentaire d'urgence",
+        "Soutien scolaire pour enfants"
+      ],
+      "notes": "Famille nombreuse en difficulté financière"
+    },
+    {
+      "id": 2,
+      "name": "Famille Trabelsi",
+      "fatherName": "Hedi Trabelsi",
+      "fatherCIN": "11223344",
+      "fatherPhone": "+216 25 555 666",
+      "motherName": "Leila Trabelsi",
+      "motherCIN": "44332211",
+      "motherPhone": "+216 27 777 888",
+      "maritalStatus": "Marié(e)",
+      "healthCard": "CNSS",
+      "chronicDisease": true,
+      "chronicDiseaseDetails": "Diabète et hypertension artérielle",
+      "zone": "Khitmin",
+      "latitude": 37.1234,
+      "longitude": 9.5678,
+      "contact": "Hedi Trabelsi (+216 25 555 666)",
+      "address": "Khitmin (37.1234, 9.5678)",
+      "members": 4,
+      "children": 2,
+      "childrenDetails": [
+        {
+          "id": "4",
+          "nom": "Trabelsi",
+          "prenom": "Sarra",
+          "gender": "Féminin",
+          "niveauScolaire": "Lycée",
+          "notes": "Prépare le baccalauréat"
+        },
+        {
+          "id": "5",
+          "nom": "Trabelsi",
+          "prenom": "Karim",
+          "gender": "Masculin",
+          "niveauScolaire": "Collège",
+          "notes": "Bon en sport"
+        }
+      ],
+      "status": "Active",
+      "priority": "Moyen",
+      "registrationDate": "2023-02-10",
+      "lastHelp": "2023-11-15",
+      "needs": [
+        "Vêtements d'hiver",
+        "Consultation médicale"
+      ],
+      "notes": "Père au chômage, mère malade"
+    },
+    {
+      "id": 3,
+      "name": "Famille Khiari",
+      "fatherName": "Karim Khiari",
+      "fatherCIN": "55667788",
+      "fatherPhone": "+216 29 999 111",
+      "motherName": "Nadia Khiari",
+      "motherCIN": "88776655",
+      "motherPhone": "+216 26 222 333",
+      "maritalStatus": "Veuf(ve)",
+      "healthCard": "Carte de traitement à faible coût",
+      "chronicDisease": false,
+      "zone": "Hriza",
+      "latitude": 37.3456,
+      "longitude": 9.1234,
+      "contact": "Nadia Khiari (+216 26 222 333)",
+      "address": "Hriza (37.3456, 9.1234)",
+      "members": 6,
+      "children": 4,
+      "childrenDetails": [
+        {
+          "id": "6",
+          "nom": "Khiari",
+          "prenom": "Fatma",
+          "gender": "Féminin",
+          "niveauScolaire": "Primaire",
+          "notes": "Très timide"
+        },
+        {
+          "id": "7",
+          "nom": "Khiari",
+          "prenom": "Ahmed",
+          "gender": "Masculin",
+          "niveauScolaire": "Primaire",
+          "notes": ""
+        },
+        {
+          "id": "8",
+          "nom": "Khiari",
+          "prenom": "Mariam",
+          "gender": "Féminin",
+          "niveauScolaire": "Maternelle",
+          "notes": "Très active"
+        },
+        {
+          "id": "9",
+          "nom": "Khiari",
+          "prenom": "Yassine",
+          "gender": "Masculin",
+          "niveauScolaire": "Maternelle",
+          "notes": ""
+        }
+      ],
+      "status": "Active",
+      "priority": "Urgent",
+      "registrationDate": "2023-03-05",
+      "lastHelp": "2023-12-10",
+      "needs": [
+        "Aide alimentaire d'urgence",
+        "Vêtements d'hiver",
+        "Soutien scolaire pour enfants"
+      ],
+      "notes": "Veuve avec 4 enfants en bas âge"
+    },
+    {
+      "id": 4,
+      "name": "Famille Fares",
+      "fatherName": "Omar Fares",
+      "fatherCIN": "99887766",
+      "fatherPhone": "+216 22 222 222",
+      "motherName": "Aicha Fares",
+      "motherCIN": "66778899",
+      "motherPhone": "+216 23 444 555",
+      "maritalStatus": "Marié(e)",
+      "healthCard": "Carte de traitement gratuit",
+      "chronicDisease": false,
+      "zone": "Sidi Ali Chbeb",
+      "latitude": 37.4567,
+      "longitude": 9.789,
+      "contact": "Omar Fares (+216 22 222 222)",
+      "address": "Sidi Ali Chbeb (37.4567, 9.7890)",
+      "members": 12,
+      "children": 4,
+      "childrenDetails": [
+        {
+          "id": "10",
+          "nom": "Fares",
+          "prenom": "Lina",
+          "gender": "Féminin",
+          "niveauScolaire": "Université",
+          "notes": "Étudie l'informatique"
+        },
+        {
+          "id": "11",
+          "nom": "Fares",
+          "prenom": "Hassen",
+          "gender": "Masculin",
+          "niveauScolaire": "Lycée",
+          "notes": "Passion pour la mécanique"
+        },
+        {
+          "id": "12",
+          "nom": "Fares",
+          "prenom": "Nour",
+          "gender": "Féminin",
+          "niveauScolaire": "Collège",
+          "notes": "Aime la lecture"
+        },
+        {
+          "id": "13",
+          "nom": "Fares",
+          "prenom": "Salim",
+          "gender": "Masculin",
+          "niveauScolaire": "Primaire",
+          "notes": ""
+        }
+      ],
+      "status": "Active",
+      "priority": "Moyen",
+      "needs": [
+        "Aide alimentaire d'urgence",
+        "Aide au logement",
+        "Transport médical"
+      ],
+      "registrationDate": "2023-08-20",
+      "lastHelp": "2023-10-05",
+      "notes": ""
+    }
+  ],
+  "needs": [
+    {
+      "id": 1,
+      "name": "Aide alimentaire d'urgence",
+      "description": "Distribution de colis alimentaires pour les familles en détresse",
+      "category": "Alimentaire",
+      "isActive": true,
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Vêtements d'hiver",
+      "description": "Fourniture de vêtements chauds pour la saison froide",
+      "category": "Vestimentaire",
+      "isActive": true,
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Consultation médicale",
+      "description": "Prise en charge des frais médicaux et consultations",
+      "category": "Médical",
+      "isActive": true,
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "Soutien scolaire pour enfants",
+      "description": "Fournitures scolaires et aide aux devoirs",
+      "category": "Éducation",
+      "isActive": true,
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "name": "Aide au logement",
+      "description": "Assistance pour le loyer et les charges",
+      "category": "Logement",
+      "isActive": true,
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "name": "Transport médical",
+      "description": "Transport pour les rendez-vous médicaux",
+      "category": "Transport",
+      "isActive": true,
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "name": "Médicaments essentiels",
+      "description": "Fourniture de médicaments de base",
+      "category": "Médical",
+      "isActive": true,
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "name": "Vêtements pour bébés",
+      "description": "Vêtements et accessoires pour nourrissons",
+      "category": "Vestimentaire",
+      "isActive": false,
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    }
+  ],
+  "interventions": [
+    {
+      "id": 1,
+      "familyId": 1,
+      "type": "Aide alimentaire",
+      "description": "Distribution de colis alimentaire d'urgence",
+      "date": "2023-12-01",
+      "amount": 150,
+      "items": [
+        "Riz",
+        "Huile",
+        "Conserves",
+        "Lait"
+      ],
+      "status": "Terminée",
+      "volunteer": "Ahmed Ben Salem",
+      "notes": "Famille très reconnaissante",
+      "createdAt": "2023-11-28"
+    },
+    {
+      "id": 2,
+      "familyId": 2,
+      "type": "Aide médicale",
+      "description": "Prise en charge des frais médicaux",
+      "date": "2023-11-15",
+      "amount": 200,
+      "status": "Terminée",
+      "volunteer": "Fatma Trabelsi",
+      "notes": "Consultation spécialisée pour la mère",
+      "createdAt": "2023-11-10"
+    },
+    {
+      "id": 3,
+      "familyId": 3,
+      "type": "Soutien scolaire",
+      "description": "Fournitures scolaires pour les enfants",
+      "date": "2023-12-10",
+      "amount": 120,
+      "items": [
+        "Cahiers",
+        "Stylos",
+        "Cartables",
+        "Livres"
+      ],
+      "status": "Terminée",
+      "volunteer": "Mohamed Khiari",
+      "notes": "Rentrée scolaire préparée",
+      "createdAt": "2023-12-05"
+    },
+    {
+      "id": 4,
+      "familyId": 1,
+      "type": "Aide vestimentaire",
+      "description": "Vêtements d'hiver pour les enfants",
+      "date": "2023-12-15",
+      "amount": 80,
+      "items": [
+        "Manteaux",
+        "Chaussures",
+        "Pulls"
+      ],
+      "status": "Planifiée",
+      "volunteer": "Amina Bouaziz",
+      "notes": "Préparation pour l'hiver",
+      "createdAt": "2023-12-12"
+    }
+  ],
+  "stocks": [
+    {
+      "quantity": 20,
+      "lastUpdated": "2025-07-09T21:15:24.882Z",
+      "status": "Faible",
+      "id": 2
+    },
+    {
+      "quantity": 101,
+      "lastUpdated": "2025-07-10T07:41:47.619Z",
+      "status": "Disponible",
+      "id": 3
+    },
+    {
+      "quantity": 50,
+      "lastUpdated": "2025-07-10T07:42:54.970Z",
+      "status": "Disponible",
+      "id": 4
+    },
+    {
+      "quantity": 90,
+      "lastUpdated": "2025-07-10T07:44:27.382Z",
+      "status": "Disponible",
+      "id": 5
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "Formation premiers secours",
+      "description": "Formation aux gestes de premiers secours pour les bénévoles",
+      "date": "2024-01-15",
+      "time": "09:00",
+      "location": "Siège social, Tunis",
+      "type": "Formation",
+      "status": "Planifié",
+      "organizer": "Ahmed Ben Salem",
+      "participants": [
+        "Mohamed Khiari",
+        "Fatma Trabelsi"
+      ],
+      "maxParticipants": 20,
+      "requirements": [
+        "Motivation",
+        "Disponibilité complète"
+      ],
+      "notes": "Certificat délivré à la fin",
+      "createdAt": "2023-12-01"
+    },
+    {
+      "id": 2,
+      "title": "Collecte alimentaire",
+      "description": "Collecte de denrées alimentaires dans les supermarchés",
+      "date": "2024-01-20",
+      "time": "08:00",
+      "location": "Supermarchés partenaires",
+      "type": "Collecte",
+      "status": "Planifié",
+      "organizer": "Fatma Trabelsi",
+      "participants": [
+        "Ahmed Ben Salem",
+        "Mohamed Khiari",
+        "Amina Bouaziz"
+      ],
+      "maxParticipants": 15,
+      "requirements": [
+        "Transport disponible",
+        "Force physique"
+      ],
+      "notes": "Collaboration avec 5 supermarchés",
+      "createdAt": "2023-12-05"
+    },
+    {
+      "id": 3,
+      "title": "Distribution de colis",
+      "description": "Distribution de colis alimentaires aux familles",
+      "date": "2024-01-25",
+      "time": "14:00",
+      "location": "Centres de distribution",
+      "type": "Distribution",
+      "status": "Planifié",
+      "organizer": "Mohamed Khiari",
+      "participants": [
+        "Ahmed Ben Salem",
+        "Fatma Trabelsi"
+      ],
+      "maxParticipants": 10,
+      "requirements": [
+        "Véhicule recommandé"
+      ],
+      "notes": "50 familles bénéficiaires prévues",
+      "createdAt": "2023-12-08"
+    },
+    {
+      "id": 4,
+      "title": "Journée sensibilisation",
+      "description": "Sensibilisation dans les écoles sur l'aide humanitaire",
+      "date": "2024-02-01",
+      "time": "10:00",
+      "location": "Écoles primaires",
+      "type": "Sensibilisation",
+      "status": "Planifié",
+      "organizer": "Amina Bouaziz",
+      "participants": [
+        "Fatma Trabelsi"
+      ],
+      "maxParticipants": 8,
+      "requirements": [
+        "Aisance avec les enfants",
+        "Matériel pédagogique"
+      ],
+      "notes": "3 écoles visitées",
+      "createdAt": "2023-12-10"
+    },
+    {
+      "title": "aaa",
+      "description": "aaaa",
+      "date": "2025-07-02",
+      "time": "13:11",
+      "location": "el alia ",
+      "type": "Formation",
+      "status": "Planifié",
+      "organizer": "aaaa",
+      "participants": [],
+      "maxParticipants": 1,
+      "requirements": [
+        "hello",
+        "heuyyy"
+      ],
+      "notes": "",
+      "createdAt": "2025-07-02T12:12:04.093Z",
+      "id": 5
+    }
+  ]
+}
