@@ -39,7 +39,7 @@ export interface VolunteerStats {
  * 🛠️ Service des Bénévoles
  * 
  * Ce service contient toutes les fonctions pour gérer les bénévoles.
- * Il communique avec le serveur JSON pour sauvegarder/récupérer les données.
+ * Il communique avec l'API Symfony pour sauvegarder/récupérer les données.
  */
 export const volunteerService = {
   /**
@@ -50,10 +50,9 @@ export const volunteerService = {
    * @returns Promise<Volunteer[]> - Liste de tous les bénévoles
    */
   getAll: async (): Promise<Volunteer[]> => {
-    console.log('Fetching all volunteers from JSON server...');
+    console.log('Fetching all volunteers from Symfony API...');
     const response = await api.get('/volunteers');
     console.log('Volunteers fetched:', response.data);
-
     return response.data;
   },
 
@@ -66,7 +65,7 @@ export const volunteerService = {
    * @returns Promise<Volunteer> - Le bénévole trouvé
    */
   getById: async (id: number): Promise<Volunteer> => {
-    console.log(`Fetching volunteer ${id} from JSON server...`);
+    console.log(`Fetching volunteer ${id} from Symfony API...`);
     const response = await api.get(`/volunteers/${id}`);
     console.log('Volunteer fetched:', response.data);
     return response.data;
@@ -82,7 +81,7 @@ export const volunteerService = {
    * @returns Promise<Volunteer> - Le bénévole créé avec son nouvel ID
    */
   create: async (volunteer: Omit<Volunteer, 'id'>): Promise<Volunteer> => {
-    console.log('Creating volunteer in JSON server:', volunteer);
+    console.log('Creating volunteer in Symfony API:', volunteer);
     const response = await api.post('/volunteers', volunteer);
     console.log('Volunteer created:', response.data);
     return response.data;
@@ -99,7 +98,7 @@ export const volunteerService = {
    * @returns Promise<Volunteer> - Le bénévole mis à jour
    */
   update: async (id: number, volunteer: Partial<Volunteer>): Promise<Volunteer> => {
-    console.log(`Updating volunteer ${id} in JSON server:`, volunteer);
+    console.log(`Updating volunteer ${id} in Symfony API:`, volunteer);
     const response = await api.put(`/volunteers/${id}`, volunteer);
     console.log('Volunteer updated:', response.data);
     return response.data;
@@ -114,7 +113,7 @@ export const volunteerService = {
    * @returns Promise<void> - Aucune donnée retournée
    */
   delete: async (id: number): Promise<void> => {
-    console.log(`Deleting volunteer ${id} from JSON server...`);
+    console.log(`Deleting volunteer ${id} from Symfony API...`);
     await api.delete(`/volunteers/${id}`);
     console.log('Volunteer deleted');
   },
@@ -130,7 +129,7 @@ export const volunteerService = {
    */
   search: async (query: string): Promise<Volunteer[]> => {
     console.log(`Searching volunteers with query: ${query}`);
-    const response = await api.get(`/volunteers?q=${encodeURIComponent(query)}`);
+    const response = await api.get(`/volunteers/search?q=${encodeURIComponent(query)}`);
     console.log('Search results:', response.data);
     return response.data;
   },
@@ -146,34 +145,62 @@ export const volunteerService = {
    */
   getByStatus: async (status: string): Promise<Volunteer[]> => {
     console.log(`Filtering volunteers by status: ${status}`);
-    const response = await api.get(`/volunteers?status=${status}`);
+    const response = await api.get(`/volunteers/status/${status}`);
     console.log('Filtered volunteers:', response.data);
     return response.data;
   },
 
   /**
-   * 📈 Calculer les statistiques des bénévoles
+   * 📈 Récupérer les statistiques des bénévoles
    * 
-   * Cette fonction récupère tous les bénévoles et calcule des statistiques utiles.
-   * Elle compte combien sont actifs, disponibles, en mission, etc.
+   * Cette fonction récupère les statistiques calculées côté serveur.
    * 
    * @returns Promise<VolunteerStats> - Les statistiques calculées
    */
   getStats: async (): Promise<VolunteerStats> => {
-    console.log('Calculating volunteer stats from JSON server...');
-    const response = await api.get('/volunteers');
-    const volunteers = response.data;
-    
-    // Calculer chaque statistique en filtrant les bénévoles
-    const stats: VolunteerStats = {
-      total: volunteers.length,  // Nombre total
-      actifs: volunteers.filter((v: Volunteer) => v.status === 'Actif').length,
-      disponibles: volunteers.filter((v: Volunteer) => v.availability === 'Disponible').length,
-      enMission: volunteers.filter((v: Volunteer) => v.availability === 'En mission').length,
-      indisponibles: volunteers.filter((v: Volunteer) => v.availability === 'Indisponible').length
-    };
-    
-    console.log('Volunteer stats calculated:', stats);
-    return stats;
+    console.log('Fetching volunteer stats from Symfony API...');
+    const response = await api.get('/volunteers/stats');
+    console.log('Volunteer stats fetched:', response.data);
+    return response.data;
+  },
+
+  /**
+   * 🔄 Changer le statut d'un bénévole
+   * 
+   * @param id - L'ID du bénévole
+   * @param status - Le nouveau statut
+   * @returns Promise<Volunteer> - Le bénévole mis à jour
+   */
+  changeStatus: async (id: number, status: string): Promise<Volunteer> => {
+    console.log(`Changing status for volunteer ${id} to: ${status}`);
+    const response = await api.put(`/volunteers/${id}/status`, { status });
+    console.log('Status changed:', response.data);
+    return response.data;
+  },
+
+  /**
+   * 📅 Changer la disponibilité d'un bénévole
+   * 
+   * @param id - L'ID du bénévole
+   * @param availability - La nouvelle disponibilité
+   * @returns Promise<Volunteer> - Le bénévole mis à jour
+   */
+  changeAvailability: async (id: number, availability: string): Promise<Volunteer> => {
+    console.log(`Changing availability for volunteer ${id} to: ${availability}`);
+    const response = await api.put(`/volunteers/${id}/availability`, { availability });
+    console.log('Availability changed:', response.data);
+    return response.data;
+  },
+
+  /**
+   * 🎯 Récupérer les bénévoles disponibles pour mission
+   * 
+   * @returns Promise<Volunteer[]> - Liste des bénévoles disponibles
+   */
+  getAvailable: async (): Promise<Volunteer[]> => {
+    console.log('Fetching available volunteers from Symfony API...');
+    const response = await api.get('/volunteers/available');
+    console.log('Available volunteers:', response.data);
+    return response.data;
   }
 };

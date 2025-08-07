@@ -25,7 +25,7 @@ export interface Stock {
  * 🛠️ Service des Stocks
  * 
  * Ce service contient toutes les fonctions pour gérer l'inventaire.
- * Il communique avec le serveur JSON pour sauvegarder/récupérer les données.
+ * Il communique avec l'API Symfony pour sauvegarder/récupérer les données.
  */
 export const stockService = {
   /**
@@ -36,7 +36,7 @@ export const stockService = {
    * @returns Promise<Stock[]> - Liste de tous les articles
    */
   getAll: async (): Promise<Stock[]> => {
-    console.log('Fetching all stocks from JSON server...');
+    console.log('Fetching all stocks from Symfony API...');
     const response = await api.get('/stocks');
     console.log('Stocks fetched:', response.data);
     return response.data;
@@ -51,7 +51,7 @@ export const stockService = {
    * @returns Promise<Stock> - L'article trouvé
    */
   getById: async (id: number): Promise<Stock> => {
-    console.log(`Fetching stock ${id} from JSON server...`);
+    console.log(`Fetching stock ${id} from Symfony API...`);
     const response = await api.get(`/stocks/${id}`);
     console.log('Stock fetched:', response.data);
     return response.data;
@@ -67,7 +67,7 @@ export const stockService = {
    * @returns Promise<Stock> - L'article créé avec son nouvel ID
    */
   create: async (stock: Omit<Stock, 'id'>): Promise<Stock> => {
-    console.log('Creating stock in JSON server:', stock);
+    console.log('Creating stock in Symfony API:', stock);
     const response = await api.post('/stocks', stock);
     console.log('Stock created:', response.data);
     return response.data;
@@ -84,7 +84,7 @@ export const stockService = {
    * @returns Promise<Stock> - L'article mis à jour
    */
   update: async (id: number, stock: Partial<Stock>): Promise<Stock> => {
-    console.log(`Updating stock ${id} in JSON server:`, stock);
+    console.log(`Updating stock ${id} in Symfony API:`, stock);
     const response = await api.put(`/stocks/${id}`, stock);
     console.log('Stock updated:', response.data);
     return response.data;
@@ -99,7 +99,7 @@ export const stockService = {
    * @returns Promise<void> - Aucune donnée retournée
    */
   delete: async (id: number): Promise<void> => {
-    console.log(`Deleting stock ${id} from JSON server...`);
+    console.log(`Deleting stock ${id} from Symfony API...`);
     await api.delete(`/stocks/${id}`);
     console.log('Stock deleted');
   },
@@ -115,7 +115,7 @@ export const stockService = {
    */
   search: async (query: string): Promise<Stock[]> => {
     console.log(`Searching stocks with query: ${query}`);
-    const response = await api.get(`/stocks?q=${encodeURIComponent(query)}`);
+    const response = await api.get(`/stocks/search?name=${encodeURIComponent(query)}`);
     console.log('Search results:', response.data);
     return response.data;
   },
@@ -131,7 +131,7 @@ export const stockService = {
    */
   getByCategory: async (category: string): Promise<Stock[]> => {
     console.log(`Filtering stocks by category: ${category}`);
-    const response = await api.get(`/stocks?category=${category}`);
+    const response = await api.get(`/stocks/category/${category}`);
     console.log('Filtered stocks:', response.data);
     return response.data;
   },
@@ -147,8 +147,63 @@ export const stockService = {
    */
   getByStatus: async (status: string): Promise<Stock[]> => {
     console.log(`Filtering stocks by status: ${status}`);
-    const response = await api.get(`/stocks?status=${status}`);
+    const response = await api.get(`/stocks/status/${status}`);
     console.log('Filtered stocks:', response.data);
+    return response.data;
+  },
+
+  /**
+   * 📍 Filtrer les articles par emplacement
+   * 
+   * @param location - L'emplacement à filtrer
+   * @returns Promise<Stock[]> - Liste des articles à cet emplacement
+   */
+  getByLocation: async (location: string): Promise<Stock[]> => {
+    console.log(`Filtering stocks by location: ${location}`);
+    const response = await api.get(`/stocks/location/${location}`);
+    console.log('Filtered stocks:', response.data);
+    return response.data;
+  },
+
+  /**
+   * ➕ Ajouter du stock
+   * 
+   * @param id - L'ID de l'article
+   * @param quantity - La quantité à ajouter
+   * @returns Promise<Stock> - L'article mis à jour
+   */
+  addStock: async (id: number, quantity: number): Promise<Stock> => {
+    console.log(`Adding ${quantity} to stock ${id}...`);
+    const response = await api.put(`/stocks/${id}/add`, { quantity });
+    console.log('Stock added:', response.data);
+    return response.data;
+  },
+
+  /**
+   * ➖ Retirer du stock
+   * 
+   * @param id - L'ID de l'article
+   * @param quantity - La quantité à retirer
+   * @returns Promise<Stock> - L'article mis à jour
+   */
+  removeStock: async (id: number, quantity: number): Promise<Stock> => {
+    console.log(`Removing ${quantity} from stock ${id}...`);
+    const response = await api.put(`/stocks/${id}/remove`, { quantity });
+    console.log('Stock removed:', response.data);
+    return response.data;
+  },
+
+  /**
+   * 📊 Mettre à jour la quantité
+   * 
+   * @param id - L'ID de l'article
+   * @param quantity - La nouvelle quantité
+   * @returns Promise<Stock> - L'article mis à jour
+   */
+  updateQuantity: async (id: number, quantity: number): Promise<Stock> => {
+    console.log(`Updating quantity for stock ${id} to ${quantity}...`);
+    const response = await api.put(`/stocks/${id}/quantity`, { quantity });
+    console.log('Quantity updated:', response.data);
     return response.data;
   },
 
@@ -161,14 +216,84 @@ export const stockService = {
    * @returns Promise<Stock[]> - Liste des articles en stock faible
    */
   getLowStock: async (): Promise<Stock[]> => {
-    console.log('Fetching low stock items...');
-    const response = await api.get('/stocks');
-    const stocks = response.data;
-    
-    // Filtrer pour garder seulement les articles en quantité insuffisante
-    const lowStocks = stocks.filter((stock: Stock) => stock.quantity <= stock.minQuantity);
-    
-    console.log('Low stock items:', lowStocks);
-    return lowStocks;
+    console.log('Fetching low stock items from Symfony API...');
+    const response = await api.get('/stocks/low-stock');
+    console.log('Low stock items:', response.data);
+    return response.data;
   },
+
+  /**
+   * ⏰ Obtenir les articles expirés
+   * 
+   * @returns Promise<Stock[]> - Liste des articles expirés
+   */
+  getExpired: async (): Promise<Stock[]> => {
+    console.log('Fetching expired items from Symfony API...');
+    const response = await api.get('/stocks/expired');
+    console.log('Expired items:', response.data);
+    return response.data;
+  },
+
+  /**
+   * ⏰ Obtenir les articles expirant bientôt
+   * 
+   * @param days - Nombre de jours pour l'alerte
+   * @returns Promise<Stock[]> - Liste des articles expirant bientôt
+   */
+  getExpiringSoon: async (days: number = 30): Promise<Stock[]> => {
+    console.log(`Fetching items expiring in ${days} days from Symfony API...`);
+    const response = await api.get(`/stocks/expiring-soon?days=${days}`);
+    console.log('Expiring soon items:', response.data);
+    return response.data;
+  },
+
+  /**
+   * ⚠️ Obtenir toutes les alertes de stock
+   * 
+   * @returns Promise<any> - Toutes les alertes
+   */
+  getAlerts: async (): Promise<any> => {
+    console.log('Fetching stock alerts from Symfony API...');
+    const response = await api.get('/stocks/alerts');
+    console.log('Stock alerts:', response.data);
+    return response.data;
+  },
+
+  /**
+   * ✅ Vérifier la disponibilité d'un article
+   * 
+   * @param id - L'ID de l'article
+   * @param quantity - La quantité nécessaire
+   * @returns Promise<boolean> - True si disponible
+   */
+  checkAvailability: async (id: number, quantity: number): Promise<boolean> => {
+    console.log(`Checking availability for stock ${id}, quantity ${quantity}...`);
+    const response = await api.get(`/stocks/${id}/check-availability?quantity=${quantity}`);
+    console.log('Availability check result:', response.data);
+    return response.data.available;
+  },
+
+  /**
+   * 📊 Obtenir les statistiques des stocks
+   * 
+   * @returns Promise<any> - Les statistiques
+   */
+  getStats: async (): Promise<any> => {
+    console.log('Fetching stock stats from Symfony API...');
+    const response = await api.get('/stocks/stats');
+    console.log('Stock stats:', response.data);
+    return response.data;
+  },
+
+  /**
+   * 💰 Obtenir la valeur par catégorie
+   * 
+   * @returns Promise<any> - La valeur par catégorie
+   */
+  getValueByCategory: async (): Promise<any> => {
+    console.log('Fetching stock value by category from Symfony API...');
+    const response = await api.get('/stocks/value-by-category');
+    console.log('Value by category:', response.data);
+    return response.data;
+  }
 };

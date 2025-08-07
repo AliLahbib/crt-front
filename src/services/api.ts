@@ -2,14 +2,14 @@
 import axios from 'axios';
 
 /**
- * 🌐 Configuration API - Communication avec le serveur JSON
+ * 🌐 Configuration API - Communication avec le backend Symfony
  * 
- * Ce fichier configure Axios pour communiquer avec notre serveur JSON local.
+ * Ce fichier configure Axios pour communiquer avec notre API Symfony.
  * Axios est une librairie qui simplifie les requêtes HTTP (GET, POST, PUT, DELETE).
  */
 
-// 📍 URL de base de notre serveur JSON local
-const API_BASE_URL = 'http://localhost:3001';
+// 📍 URL de base de notre API Symfony
+const API_BASE_URL = 'http://127.0.0.1:8000/api';
 
 /**
  * 🔧 Instance Axios configurée
@@ -63,10 +63,33 @@ api.interceptors.response.use(
     // Logger l'erreur pour le débogage
     console.error('API Error:', error);
     
-    // Ici on pourrait ajouter une gestion globale des erreurs :
-    // - Rediriger vers la page de login si 401 (non autorisé)
-    // - Afficher un message d'erreur global si 500 (erreur serveur)
-    // - etc.
+    // Gestion spécifique des erreurs Symfony
+    if (error.response) {
+      const { status, data } = error.response;
+      
+      switch (status) {
+        case 401:
+          // Non autorisé - rediriger vers login
+          console.error('Non autorisé - Token invalide ou expiré');
+          localStorage.removeItem('auth_token');
+          // Ici on pourrait rediriger vers la page de login
+          break;
+        case 403:
+          console.error('Accès interdit');
+          break;
+        case 404:
+          console.error('Ressource non trouvée');
+          break;
+        case 422:
+          console.error('Données invalides:', data);
+          break;
+        case 500:
+          console.error('Erreur serveur interne');
+          break;
+        default:
+          console.error(`Erreur ${status}:`, data);
+      }
+    }
     
     return Promise.reject(error);
   }
